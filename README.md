@@ -52,3 +52,29 @@ for this workspace when prompted.
 ```bash
 export PS1="\[\033[01;32m\]\u@\h:\w\n\[\033[00m\]\$ "
 ```
+
+## Installation
+
+### Install the required packages
+
+```bash
+$ pip install -r requirements.txt
+```
+
+### Setup the environment variables
+
+```bash
+$ cp .env.example .env
+```
+
+Set Your environment variables in the `.env` file like `OPENAI_API_KEY` value
+
+## Run the FastAPI Server
+
+```bash
+$ uvicorn main:app --reload --host 0.0.0.0 --port 5000
+```
+
+## POSTMAN Collection
+
+Download The POSTMAN Collection from [/assets/mini-rag-app.postman_collection.json](/assets/mini-rag-app.postman_collection.json)
