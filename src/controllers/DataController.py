@@ -47,4 +47,4 @@ class DataController(BaseController):
             new_file_path = os.path.join(project_path , random_filename + "_" + cleaned_file_name)
 
 
-        return new_file_path
+        return new_file_path , random_filename + "_" + cleaned_file_name
