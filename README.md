@@ -68,3 +68,13 @@ $ cp .env.example .env
 ```
 
 Set Your environment variables in the `.env` file like `OPENAI_API_KEY` value
+
+## Run the FastAPI Server
+
+```bash
+$ uvicorn main:app --reload --host 0.0.0.0 --port 5000
+```
+
+## POSTMAN Collection
+
+Download The POSTMAN Collection from [/assets/mini-rag-app.postman_collection.json](/assets/mini-rag-app.postman_collection.json)
