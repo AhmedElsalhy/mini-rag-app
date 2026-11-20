@@ -1,7 +1,7 @@
 from typing import Optional
 
 from bson.objectid import ObjectId
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class Project(BaseModel):
@@ -15,5 +15,6 @@ class Project(BaseModel):
 
         return value
 
-    class Config:
-        arbitrary_types_allowed:True
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True
+    )
