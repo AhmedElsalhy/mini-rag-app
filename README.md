@@ -67,7 +67,16 @@ $ pip install -r requirements.txt
 $ cp .env.example .env
 ```
 
-Set Your environment variables in the `.env` file like `OPENAI_API_KEY` value
+Set Your environment variables in the `.env` file like `OPENAI_API_KEY` value.
+
+## Run Docker Compose Services
+
+```bash
+$ cd docker
+$ cp .env.example .end
+```
+
+- update `.env` with your credentials
 
 ## Run the FastAPI Server
 
