@@ -1,7 +1,7 @@
 from typing import Optional
 
 from bson.objectid import ObjectId
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import false
 
 
@@ -11,10 +11,11 @@ class DataChunk(BaseModel):
     chunk_metadata: dict
     chunk_order: int = Field(..., gt=0)
     chunk_project_id: ObjectId
+    chunk_asset_id: ObjectId
 
-
-    class Config:
+    model_config = ConfigDict(
         arbitrary_types_allowed=True
+    )
 
 
     @classmethod
