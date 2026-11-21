@@ -1,6 +1,4 @@
-from datetime import datetime
-from time import timezone
-
+from datetime import datetime , timezone
 from pydantic import BaseModel, ConfigDict , Field, field_validator
 from typing import Optional
 from bson.objectid import ObjectId

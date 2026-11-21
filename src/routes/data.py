@@ -4,8 +4,11 @@ from helper.config import Settings, get_settings
 from controllers import DataController , ProcessController
 from models.ProjectModel import ProjectModel
 from models.ChunkModel import ChunkModel
+from models.db_schemes import DataChunk , Asset
+from models.Asset_model import AssetModel
+from models.enums.AssetTypeEnum import AssetTypeEnum
 from .schemes.data_scheme import ProcessRequest
-from models.db_schemes import DataChunk
+import os
 import aiofiles
 import logging
 
@@ -53,10 +56,23 @@ async def upload_file(request : Request,project_id:str , file:UploadFile , app_s
                     status_code=status.HTTP_400_BAD_REQUEST,
                     content={"signal": ResponseSignal.FILE_UPLOAD_FAILED}
                 )
+
+    # store the assets into the database
+    asset_model = await AssetModel.create_instance(
+        db_client=request.app.db_client
+    )
+    asset_resource = Asset(
+        asset_project_id = project.id,
+        asset_type = AssetTypeEnum.FILE.value,
+        asset_name =file_id,
+        asset_size = os.path.getsize(file_path),
+    )
+    asset_record = await asset_model.create_asset(asset=asset_resource)
+
     return JSONResponse(
             content = {
                 "signal": ResponseSignal.FILE_UPLOAD_SUCCESS.value,
-                "file_id" : file_id,
+                "file_id" : str(asset_record.id),
             }
         )
 
